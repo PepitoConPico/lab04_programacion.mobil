@@ -84,10 +84,31 @@ fun LazyRowExample() {
 @Composable
 fun GridExample() {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(3)
+        columns = GridCells.Fixed(3),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp), // Padding externo para toda la cuadrícula
+        contentPadding = PaddingValues(8.dp), // Padding interno
+        verticalArrangement = Arrangement.spacedBy(8.dp), // Espacio entre filas
+        horizontalArrangement = Arrangement.spacedBy(8.dp) // Espacio entre columnas
     ) {
         items(9) { index ->
-            Text(text = "Item #$index")
+            Box(
+                modifier = Modifier
+                    .background(Color.LightGray)
+                    .fillMaxWidth()
+                    .aspectRatio(1f) // Mantiene los items cuadrados
+                    .clip(RoundedCornerShape(8.dp)) // Bordes redondeados
+                    .padding(8.dp), // Padding dentro de cada ítem
+                contentAlignment = Alignment.Center // Centrar el contenido en cada ítem
+            ) {
+                Text(
+                    text = "Item #$index",
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
     }
 }
