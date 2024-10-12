@@ -65,9 +65,24 @@ fun GreetingPreview() {
 
 @Composable
 fun LazyColumnExample() {
-    LazyColumn {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp) // Espacio entre los ítems
+    ) {
         items(10) { index ->
-            Text("Item #$index")
+            Text(
+                text = "Item #$index",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp) // Espaciado interno de cada item
+                    .background(Color.LightGray) // Color de fondo
+                    .clip(RoundedCornerShape(8.dp)), // Bordes redondeados
+                color = Color.Black, // Color del texto
+                fontSize = 18.sp, // Tamaño de fuente
+                fontWeight = FontWeight.Bold // Negrita
+            )
         }
     }
 }
